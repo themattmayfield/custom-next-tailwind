@@ -19,8 +19,6 @@ const structure = [
   },
 ];
 
-// const initialState = window.localStorage.getItem("categories") || [];
-
 export const ACTIONS = {
   ADD_CATEGORY: "add-category",
   DELETE_CATEGORY: "delete-category",
@@ -38,98 +36,17 @@ const newTodo = () => {
   };
 };
 
-const newCategory = () => {
-  return {
-    id: uuidv4(),
-    name: "",
-    todos: [
-      {
-        id: uuidv4(),
-        name: "",
-        text: "",
-        completed: false,
-      },
-    ],
-  };
-};
-
-const reducer = (categories, action) => {
-  let returnValue;
-  switch (action.type) {
-    case ACTIONS.ADD_CATEGORY:
-      returnValue = [...categories, newCategory()];
-      localStorage.setItem("categories", JSON.stringify(returnValue));
-      return returnValue;
-
-    case ACTIONS.DELETE_CATEGORY:
-      returnValue = categories.filter(({ id }) => id !== action.payload.id);
-      localStorage.setItem("categories", JSON.stringify(returnValue));
-      return returnValue;
-
-    case ACTIONS.UPDATE_CATEGORY:
-      returnValue = categories.map((category) =>
-        category.id === action.payload.id
-          ? { ...action.payload }
-          : { ...category }
-      );
-      localStorage.setItem("categories", JSON.stringify(returnValue));
-      return returnValue;
-
-    case ACTIONS.DELETE_TODO:
-      returnValue = categories.map((category) =>
-        category.id === action.payload.catID
-          ? {
-              ...category,
-              todos: category.todos.filter(
-                ({ id }) => id !== action.payload.id
-              ),
-            }
-          : { ...category }
-      );
-      localStorage.setItem("categories", JSON.stringify(returnValue));
-      return returnValue;
-
-    case ACTIONS.UPDATE_TODO:
-      returnValue = categories.map((category) =>
-        category.id === action.payload.catID
-          ? {
-              ...category,
-              todos: category.todos.map((todo) =>
-                todo.id === action.payload.item.id
-                  ? { ...action.payload.item }
-                  : { ...todo }
-              ),
-            }
-          : { ...category }
-      );
-      localStorage.setItem("categories", JSON.stringify(returnValue));
-      return returnValue;
-
-    default:
-      throw new Error();
-  }
-};
-
 export default function Home() {
-  const [categories, setCategories] = useLocalStorage("categories", []);
-  const [state, dispatch] = useReducer(reducer, categories);
-
-  const [test, setTest] = useState([]);
-  console.log(test);
-  useEffect(() => {
-    const items = localStorage.getItem("categories");
-    const parsedItems = JSON.parse(items);
-
-    setTest(parsedItems);
-  }, []);
+  const [categories, dispatch] = useLocalStorage("categories", []);
 
   return (
     <Layout>
+      <button onClick={() => sendData(ACTIONS.ADD_CATEGORY)}>test</button>
       <SubHeader dispatch={dispatch} />
-      {JSON.stringify(state)}
+      {JSON.stringify(categories)}
 
       <CategoryContainer>
-        {test.map((category, idx) => (
+        {categories.map((category, idx) => (
           <Category key={idx} category={category} dispatch={dispatch} />
         ))}
       </CategoryContainer>
