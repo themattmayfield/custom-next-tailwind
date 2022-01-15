@@ -1,49 +1,14 @@
-import { useReducer, useState, useEffect } from "react";
 import Layout from "components/Layout";
 import SubHeader from "components/SubHeader";
-import { useLocalStorage } from "lib/localstorage";
-import { v4 as uuidv4 } from "uuid";
-
-const structure = [
-  {
-    id: 0,
-    name: "cat1",
-    todos: [
-      {
-        id: 1,
-        name: "coook",
-        text: "sometihng about cooking",
-        completed: false,
-      },
-    ],
-  },
-];
-
-export const ACTIONS = {
-  ADD_CATEGORY: "add-category",
-  DELETE_CATEGORY: "delete-category",
-  UPDATE_CATEGORY: "update-category",
-  DELETE_TODO: "delete-todo",
-  UPDATE_TODO: "update-todo",
-};
-
-const newTodo = () => {
-  return {
-    id: uuidv4(),
-    name: "",
-    text: "",
-    completed: false,
-  };
-};
+import { useLocalStorage, ACTIONS } from "lib/localstorage";
 
 export default function Home() {
   const [categories, dispatch] = useLocalStorage("categories", []);
 
   return (
     <Layout>
-      <button onClick={() => sendData(ACTIONS.ADD_CATEGORY)}>test</button>
       <SubHeader dispatch={dispatch} />
-      {JSON.stringify(categories)}
+      {/* {JSON.stringify(categories)} */}
 
       <CategoryContainer>
         {categories.map((category, idx) => (
@@ -55,8 +20,7 @@ export default function Home() {
 }
 
 const CategoryContainer = ({ children }) => (
-  <div className="flex items-start gap-4 sm:gap-24 py-6 w-full overflow-x-scroll">
-    {/* <div className="snap-x snap-mandatory grid grid-rows-1 grid-flow-col gap-4 sm:gap-24 py-6 w-full overflow-x-scroll"> */}
+  <div className="flex items-start gap-x-4 sm:gap-x-8 py-6 w-full overflow-x-scroll">
     {children}
   </div>
 );
@@ -84,8 +48,8 @@ const Category = ({ category, dispatch }) => (
     <button
       onClick={() =>
         dispatch({
-          type: ACTIONS.UPDATE_CATEGORY,
-          payload: { ...category, todos: [...category.todos, newTodo()] },
+          type: ACTIONS.ADD_TODO,
+          payload: { id: category.id },
         })
       }
       className="bg-green-400 w-full py-1 rounded-lg my-2"

@@ -1,5 +1,5 @@
 import React from "react";
-import { ACTIONS } from "pages/index";
+import { ACTIONS } from "lib/localstorage";
 const SubHeader = ({ dispatch }) => {
   return (
     <div className="flex items-center justify-between">
