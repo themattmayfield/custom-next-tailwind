@@ -10,7 +10,12 @@ module.exports = {
       xs: "475px",
       ...defaultTheme.screens,
     },
-    extend: {},
+    extend: {
+      colors: {
+        todoDark: "#0E0E0E",
+        todoLight: "#EDF2F7",
+      },
+    },
   },
   plugins: [require("@tailwindcss/forms")],
 };

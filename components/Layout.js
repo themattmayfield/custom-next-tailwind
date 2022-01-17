@@ -33,10 +33,10 @@ const Layout = ({ children }) => {
         //   backgroundColor: currentTheme === "dark" ? "black" : "white",
         //   ...bgStyle,
         // }}
-        className={`bg-black min-h-full`}
+        className={`bg-todoLight dark:bg-black min-h-full transition duration-300 ease-in-out`}
       >
         <Header />
-        <main className="flex-1 max-w-8xl mx-auto w-full pt-4 sm:pt-12 px-4 xs:px-6">
+        <main className="flex-1 max-w-7xl mx-auto w-full pt-4 sm:pt-12 px-4 xs:px-6">
           {children}
         </main>
       </div>

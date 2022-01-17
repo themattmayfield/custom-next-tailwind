@@ -5,11 +5,11 @@ const SubHeader = ({ dispatch }) => {
     <div className="flex items-center justify-between">
       <p className="text-2xl font-bols">Projects</p>
       <button
-        onClick={() =>
+        onClick={() => {
           dispatch({
             type: ACTIONS.ADD_CATEGORY,
-          })
-        }
+          });
+        }}
       >
         Add Category
       </button>
