@@ -99,7 +99,7 @@ const Category = ({ category, dispatch, firstRender }) => {
               payload: { id: category.id },
             })
           }
-          className="bg-slate-300 dark:bg-zinc-900 hover:bg-slate-400/40 dark:hover:bg-opacity-60 transition duration-300 ease-in-out w-full py-1.5 rounded-lg my-3 flex justify-center"
+          className="bg-slate-300 dark:bg-[#160c0a] hover:bg-slate-400/40 dark:hover:bg-opacity-60 transition duration-300 ease-in-out w-full py-1.5 rounded-lg my-3 flex justify-center"
         >
           <PlusIcon className="h-5 w-5 text-gray-500 dark:text-zinc-700" />
         </button>
@@ -108,7 +108,8 @@ const Category = ({ category, dispatch, firstRender }) => {
         {category.todos.map((item) => (
           <div
             key={item.id}
-            className="bg-white dark:bg-black p-2 h-auto rounded-lg"
+            className="bg-white dark:bg-[#29170f] p-2 h-auto rounded-lg"
+            // className="bg-white dark:bg-[#3a2116] p-2 h-auto rounded-lg"
           >
             <div className="flex items-center justify-between">
               <CustomInput
@@ -169,6 +170,6 @@ const Category = ({ category, dispatch, firstRender }) => {
 const CustomInput = (props) => (
   <input
     {...props}
-    className={`${props.className} bg-transparent focus:px-1`}
+    className={`${props.className} bg-transparent focus:px-1 dark:text-zinc-4s00`}
   />
 );

@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import Head from "next/head";
-// import { bgStyle } from "styles/backgroundStyle";
+import { bgStyleLight, bgStyleDark } from "styles/backgroundStyle";
 import { useTheme } from "next-themes";
 const Layout = ({ children }) => {
-  // const { systemTheme, theme } = useTheme();
-  // const [mounted, setMounted] = useState(false);
+  const { systemTheme, theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
-  // useEffect(() => {
-  //   console.clear();
-  //   console.log("Hi SURE! Hope you enjoy 😀 - MATT");
-  //   setMounted(true);
-  // }, []);
+  useEffect(() => {
+    console.clear();
+    console.log("Hi SURE! Hope you enjoy 😀 - MATT");
+    setMounted(true);
+  }, []);
 
-  // if (!mounted) return null;
+  if (!mounted) return null;
 
-  // const currentTheme = theme === "system" ? systemTheme : theme;
+  const currentTheme = theme === "system" ? systemTheme : theme;
 
   return (
     <>
@@ -29,11 +29,10 @@ const Layout = ({ children }) => {
         />
       </Head> */}
       <div
-        // style={{
-        //   backgroundColor: currentTheme === "dark" ? "black" : "white",
-        //   ...bgStyle,
-        // }}
-        className={`bg-todoLight dark:bg-black h-full transition duration-300 ease-in-out overflow-y-hidden`}
+        style={
+          currentTheme === "dark" ? { ...bgStyleDark } : { ...bgStyleLight }
+        }
+        className={`h-full transition duration-300 ease-in-out overflow-y-hidden bg-[#29ce36]s`}
       >
         <Header />
         <main className="flex-1 max-w-7xl mx-auto w-full pt-4 sm:pt-12 px-4 xs:px-6 h-full flex flex-col pb-8">

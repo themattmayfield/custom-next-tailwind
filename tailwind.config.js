@@ -12,7 +12,8 @@ module.exports = {
     },
     extend: {
       colors: {
-        todoDark: "#0E0E0E",
+        // todoDark: "#0E0E0E",
+        todoDark: "#070707",
         todoLight: "#EDF2F7",
       },
     },
